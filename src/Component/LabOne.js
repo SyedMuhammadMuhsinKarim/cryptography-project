@@ -33,7 +33,13 @@ class LabOne extends Component {
     let textCode = decryptInput
       .toLowerCase()
       .split("")
-      .map(value => ((parseInt(value.charCodeAt(0), 10) + parseInt(decryptKey, 10) - 97) % 26) + 97);
+      .map(value => {
+        let s = (parseInt(value.charCodeAt(0), 10) - parseInt(decryptKey, 10) - 97)
+        if (s < 0) { s = 26 - Math.abs(s) % 26 } else if (s > 0) { s %= 26 } else { s = 0 }
+        s = s + 97
+        return s
+      });
+    console.log(textCode)
     this.setState({ encrypt: String.fromCharCode(...textCode) });
   }
 
