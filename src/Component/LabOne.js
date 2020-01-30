@@ -123,7 +123,7 @@ class LabOne extends Component {
 
             <Form.Field>
               <Button disabled={isinvalidDecrypt} type="submit">
-                Encrypt Text
+                Decrypt Text
               </Button>
             </Form.Field>
 
