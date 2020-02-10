@@ -23,7 +23,11 @@ class LabOne extends Component {
     let textCode = text
       .toLowerCase()
       .split("")
-      .map(value => ((parseInt(value.charCodeAt(0), 10) + parseInt(key, 10) - 97) % 26) + 97);
+      .map(
+        value =>
+          ((parseInt(value.charCodeAt(0), 10) + parseInt(key, 10) - 97) % 26) +
+          97
+      );
     console.log(textCode, String.fromCharCode(...textCode));
     this.setState({ decrypt: String.fromCharCode(...textCode) });
   }
@@ -34,12 +38,19 @@ class LabOne extends Component {
       .toLowerCase()
       .split("")
       .map(value => {
-        let s = (parseInt(value.charCodeAt(0), 10) - parseInt(decryptKey, 10) - 97)
-        if (s < 0) { s = 26 - Math.abs(s) % 26 } else if (s > 0) { s %= 26 } else { s = 0 }
-        s = s + 97
-        return s
+        let s =
+          parseInt(value.charCodeAt(0), 10) - parseInt(decryptKey, 10) - 97;
+        if (s < 0) {
+          s = 26 - (Math.abs(s) % 26);
+        } else if (s > 0) {
+          s %= 26;
+        } else {
+          s = 0;
+        }
+        s = s + 97;
+        return s;
       });
-    console.log(textCode)
+    console.log(textCode);
     this.setState({ encrypt: String.fromCharCode(...textCode) });
   }
 
@@ -72,19 +83,23 @@ class LabOne extends Component {
       decryptKey === null;
 
     return (
-      <Container> {/* Error Resolve: I put <Component></Component> */}
-        <Container textAlign='center'><Button onClick={this.onEncrypt}>Encryption</Button>
-          <Button onClick={this.onDecrypt}>Decryption</Button></Container>
-
+      <Container>
+        {" "}
+        {/* Error Resolve: I put <Component></Component> */}
+        <Container textAlign="center">
+          <Button onClick={this.onEncrypt}>Encryption</Button>
+          <Button onClick={this.onDecrypt}>Decryption</Button>
+        </Container>
         {encryption && (
           <Form onSubmit={this.handleSubmit}>
             <Form.Field>
               <label>Enter Plain Text (Only Letter)</label>
-              <Input 
+              <Input
                 name="text"
                 onKeyPress="return /[a-z]/i.test(event.key)"
                 value={text}
-                onChange={this.handleChange} />
+                onChange={this.handleChange}
+              />
             </Form.Field>
 
             <Form.Field>
@@ -109,7 +124,6 @@ class LabOne extends Component {
             </Form.Field>
           </Form>
         )}
-
         {decryption && (
           <Form onSubmit={this.handleDecryptSubmit}>
             <Form.Field>
@@ -145,7 +159,7 @@ class LabOne extends Component {
         )}
       </Container>
     );
-  };
+  }
 }
 
 export default LabOne;
