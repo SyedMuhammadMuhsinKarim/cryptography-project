@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Form, Button, Input, Container } from "semantic-ui-react";
 
-class LabOne extends Component {
+class LabTwo extends Component {
   state = {};
 
   handleChange = event => {
@@ -10,7 +10,8 @@ class LabOne extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    this.textToCode();
+    // this.textToCode();
+    this.keyGeneration(this.state.text, this.state.key)
   };
 
   handleDecryptSubmit = event => {
@@ -18,12 +19,31 @@ class LabOne extends Component {
     this.codeToText();
   };
 
+  keyGeneration(string, key) {
+   let res =  key.length === string.length
+   let x = string.length
+    for (var i = 0; ; i++){
+      
+      if (x === i) {
+        i = 0
+      }
+      if(res){
+        break;
+      }
+
+      key.concat(key[i]);
+    }
+
+    console.log(key)
+  }
+
   textToCode() {
     const { text, key } = this.state;
     let textCode = text
       .toLowerCase()
       .split("")
-      .map(value => ((parseInt(value.charCodeAt(0), 10) + parseInt(key, 10) - 97) % 26) + 97);
+      .map((value) => ((parseInt(value.charCodeAt(0), 10) + parseInt(key, 10) - 97) % 26) + 97);
+
     console.log(textCode, String.fromCharCode(...textCode));
     this.setState({ decrypt: String.fromCharCode(...textCode) });
   }
@@ -80,11 +100,7 @@ class LabOne extends Component {
           <Form onSubmit={this.handleSubmit}>
             <Form.Field>
               <label>Enter Plain Text (Only Letter)</label>
-              <Input 
-                name="text"
-                onKeyPress="return /[a-z]/i.test(event.key)"
-                value={text}
-                onChange={this.handleChange} />
+              <Input name="text" value={text} onChange={this.handleChange} />
             </Form.Field>
 
             <Form.Field>
@@ -93,7 +109,7 @@ class LabOne extends Component {
                 name="key"
                 value={key}
                 onChange={this.handleChange}
-                type="number"
+                type="text"
               />
             </Form.Field>
 
@@ -127,7 +143,7 @@ class LabOne extends Component {
                 name="decryptKey"
                 value={decryptKey}
                 onChange={this.handleChange}
-                type="number"
+                type="text"
               />
             </Form.Field>
 
@@ -148,4 +164,4 @@ class LabOne extends Component {
   };
 }
 
-export default LabOne;
+export default LabTwo;
