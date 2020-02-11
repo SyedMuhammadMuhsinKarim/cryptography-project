@@ -6,8 +6,8 @@ import * as ROUTES from "../../constant/routes";
 
 const options = [
   { key: 1, text: "Simple Cipher", value: `${ROUTES.CIPHERONE}` },
-  { key: 2, text: "Vigenere Cipher", value: `${ROUTES.CIPHERTWO}` }
-  // { key: 3, text: "Substitution Cipher", value: `${ROUTES.CIPHERTHREE}` },
+  { key: 2, text: "Vigenere Cipher", value: `${ROUTES.CIPHERTWO}` },
+  { key: 3, text: "Substitution Cipher", value: `${ROUTES.CIPHERTHREE}` }
   // { key: 4, text: "PlayFair Cipher", value: `${ROUTES.CIPHERFOUR}` }
 ];
 

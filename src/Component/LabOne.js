@@ -84,8 +84,6 @@ class LabOne extends Component {
 
     return (
       <Container>
-        {" "}
-        {/* Error Resolve: I put <Component></Component> */}
         <Container textAlign="center">
           <Button onClick={this.onEncrypt}>Encryption</Button>
           <Button onClick={this.onDecrypt}>Decryption</Button>
@@ -124,6 +122,7 @@ class LabOne extends Component {
             </Form.Field>
           </Form>
         )}
+
         {decryption && (
           <Form onSubmit={this.handleDecryptSubmit}>
             <Form.Field>
